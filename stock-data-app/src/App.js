@@ -96,8 +96,10 @@ class App extends React.Component {
   }
 
   handleFormUpdate(values) {
-    console.log(values.email)
-    console.log(values.password)
+    this.setState({
+      email: values.email,
+      password: values.password
+    })
   }
 
   render() {

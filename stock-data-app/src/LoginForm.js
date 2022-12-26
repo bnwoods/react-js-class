@@ -16,14 +16,19 @@ class LoginForm extends React.Component {
         return (
             <div>
                 <h1>Login Form</h1>
-                <Formik initialValues={{email: "", password: ""}} validationScheme={validationSchema} onSubmit={(values) => this.props.handleFormUpdate(values)}>
-                    <Form>
-                        <label>Email <Field type="email" name="email"></Field></label>
-                        <ErrorMessage name="email" component="div"></ErrorMessage>
-                        <label>Password <Field type="password" name="password"></Field></label>
-                        <ErrorMessage name="password" component="div"></ErrorMessage>
-                        <button type="Submit">Submit</button>
-                    </Form>
+                <Formik 
+                    initialValues={{email: "", password: ""}} 
+                    validationScheme={validationSchema} 
+                    onSubmit={(values) => 
+                        this.props.handleFormUpdate(values)
+                    }>
+                        <Form>
+                            <label>Email:<Field type="email" name="email"></Field></label>
+                            <ErrorMessage name="email" component="div"></ErrorMessage>
+                            <label>Password: <Field type="password" name="password"></Field></label>
+                            <ErrorMessage name="password" component="div"></ErrorMessage>
+                            <button type="Submit">Submit</button>
+                        </Form>
                 </Formik>
             </div>
         )

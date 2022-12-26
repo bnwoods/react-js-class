@@ -19,9 +19,19 @@ class App extends React.Component {
         {"company": "Fake", "value": 400}
       ],
       email: "",
-      password: ""
+      password: "",
+      stockData: []
     }
   }
+
+  componentDidMount() {
+    fetch("https://cloud.iexapis.com/stable/ref-data/market/us/exchanges?token=pk_0c764a1935cc40278c1a1613fe360892")
+      .then(response => response.json())
+      .then(response => this.setState({
+        stockData: response
+      }))
+  }
+
   increaseValues() {
     this.setState((prevState) => ({
       microsoftvalue: prevState.microsoftvalue + 1,
@@ -130,6 +140,14 @@ class App extends React.Component {
           decrease2={this.decreaseValues2.bind(this)}
           jumble2={this.jumbleValues2.bind(this)}/>
           <LoginForm handleFormUpdate={this.handleFormUpdate.bind(this)}/>
+          {
+            this.state.stockData.map((items) => 
+            <div key={items.mic}>
+              <h1>{items.longName}</h1>
+              <p>This acronym is: {items.mic}</p>
+            </div>
+            )
+          }
       </div>
 
     )
